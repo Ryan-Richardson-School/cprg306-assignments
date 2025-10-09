@@ -12,7 +12,7 @@ export default function NewItem() {
     };
     const decrement = () => {
         setQuantity(lastquantity => Math.max(lastquantity - 1, 1));
-    };
+    }; //Lol sorry im calling math just been doing java everything
 
     const subMisshHandle = (e) => {
         e.preventDefault();
@@ -64,6 +64,7 @@ export default function NewItem() {
         border: "1px solid #ccc",
         borderRadius: "5px",
         marginBottom: "10px",
+        backgroundColor: "blue",
     };
     const submitStyle = {
         padding: "10px 20px",
@@ -81,7 +82,7 @@ export default function NewItem() {
         border: "1px solid #ccc",
         borderRadius: "5px",
         marginBottom: "10px",
-        backgroundColor: "black",
+        backgroundColor: "blue",
     };
 
     return (
@@ -121,9 +122,9 @@ export default function NewItem() {
                         style={buttonStyle}
                         onMouseOver={e => Object.assign(e.target.style, buttonHover)}
                         onMouseOut={e => Object.assign(e.target.style, buttonStyle)}
-                        onClick={increment}
+                        onClick={decrement}
                     >
-                        +
+                        -
                     </button>
                     <span style={quantityStyle}>{quantity}</span>
                     <button
@@ -131,9 +132,9 @@ export default function NewItem() {
                         style={buttonStyle}
                         onMouseOver={e => Object.assign(e.target.style, buttonHover)}
                         onMouseOut={e => Object.assign(e.target.style, buttonStyle)}
-                        onClick={decrement}
+                        onClick={increment}
                     >
-                        -
+                        +
                     </button>
                 </div>  
                 <button type="submit" style={submitStyle}>
