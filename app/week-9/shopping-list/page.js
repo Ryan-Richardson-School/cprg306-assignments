@@ -5,7 +5,7 @@ import ItemList from "./item-list.js";
 import NewItem from "./new-item.js";
 import Items from "./items.json";
 import MealIdeas from "./meal-ideas.js";
-import { useUserAuth } from "../utils/auth-context";
+import { useUserAuth } from "../_utils/auth-context.js";
 import Link from "next/link";
 
 export default function ShoppingListPage() {
