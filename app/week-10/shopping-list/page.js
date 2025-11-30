@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ItemList from "./item-list.js";
 import NewItem from "./new-item.js";
 import MealIdeas from "./meal-ideas.js";
@@ -13,6 +13,20 @@ export default function ShoppingListPage() {
   const [items, setItems] = useState([]);
   const [selectedItemName, setSelectedItemName] = useState("");
 
+  useEffect(() => {
+    if (!user) return;
+    async function load() {
+      const data = await getItems(user.uid);
+      setItems(data);
+    }
+    load();
+  }, [user]);
+ 
+  async function handleAddItem(newItem) {
+    const id = await addItem(user.uid, newItem);
+    setItems((prev) => [...prev, { id, ...newItem }]);
+  }
+
   const cleanItemName = (name) => {
     return name
       .toLowerCase()
@@ -23,6 +37,7 @@ export default function ShoppingListPage() {
       .trim()
       .replace(/^\w/, (c) => c.toUpperCase());
   };
+
   const handleItemSelect = (item) => {
     const cleanedName = cleanItemName(item.name);
     setSelectedItemName(cleanedName);
@@ -37,21 +52,6 @@ export default function ShoppingListPage() {
         </Link>
       </main>
     );
-  }
-
-  useEffect(() => {
-    if (user) {
-      loadItems();
-    }
-  }, [user]);
-  async function loadItems() {
-    const data = await getItems(user.uid);
-    setItems(data);
-  }
-  async function handleAddItem(newItem) {
-    const id = await addItem(user.uid, newItem);
-    setItems([...items, { id, ...newItem }
-    ]);
   }
 
   return (
