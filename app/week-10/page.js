@@ -10,7 +10,7 @@ export default function Page() {
   const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
 useEffect(() => {
     if (user) {
-      router.push("/week-9/shopping-list");
+      router.push("/week-10/shopping-list");
     }
   }, [user, router]);
 
@@ -33,7 +33,7 @@ useEffect(() => {
           </button>
 
           <div className="mt-4">
-            <Link href="/week-9/shopping-list" className="underline">
+            <Link href="/week-10/shopping-list" className="underline">
               Go to Shopping List
             </Link>
           </div>
